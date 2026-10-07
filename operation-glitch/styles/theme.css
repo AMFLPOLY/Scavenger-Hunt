@@ -1,0 +1,117 @@
+/* =====================================================================
+   FIELD OPERATIONS TERMINAL — theme
+   One palette for the whole operation. Every colour in the app comes from here.
+     green  = system / secure / success
+     amber  = the handler / field tasks / caution
+     red    = alerts / denied
+   ===================================================================== */
+
+:root {
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radius: 12px;
+  --gutter: 16px;
+  color-scheme: dark;
+
+  --bg: #08090a;
+  --bg-glow: rgba(79, 216, 138, 0.07);
+  --surface: #0f1112;
+  --surface-2: #141719;
+  --surface-3: #1b1f21;
+  --border: #23282b;
+  --border-strong: #353c40;
+  --text: #e6eae7;
+  --text-dim: #8f9994;
+
+  --green: #4fd88a;
+  --green-ink: #03140a;
+  --green-soft: rgba(79, 216, 138, 0.12);
+  --amber: #f0b44c;
+  --amber-ink: #1f1300;
+  --amber-soft: rgba(240, 180, 76, 0.12);
+  --red: #ff5d55;
+  --red-soft: rgba(255, 93, 85, 0.12);
+  --placeholder: #ffe066;
+
+  --accent: var(--green);
+  --accent-ink: var(--green-ink);
+  --accent-soft: var(--green-soft);
+
+  --scan-strength: 0.13;
+  --grid-strength: 0.035;
+}
+
+/* ── Background texture: faint grid + subtle scanlines ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(160, 220, 190, var(--grid-strength)) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(160, 220, 190, var(--grid-strength)) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(120% 70% at 50% 0%, #000 10%, transparent 78%);
+  mask-image: radial-gradient(120% 70% at 50% 0%, #000 10%, transparent 78%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, var(--scan-strength)) 2px,
+    rgba(0, 0, 0, var(--scan-strength)) 3px
+  );
+}
+
+/* ── Signal interference: brief, small, readable ── */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.glitch.is-glitching .glitch-layer {
+  opacity: 0.7;
+}
+.glitch.is-glitching .glitch-layer.a {
+  color: var(--green);
+  animation: glitch-a 0.3s steps(2, end) both;
+}
+.glitch.is-glitching .glitch-layer.b {
+  color: var(--red);
+  animation: glitch-b 0.3s steps(2, end) both;
+}
+
+@keyframes glitch-a {
+  0% { clip-path: inset(12% 0 62% 0); transform: translate(-3px, 0); }
+  50% { clip-path: inset(58% 0 18% 0); transform: translate(2px, 0); }
+  100% { clip-path: inset(34% 0 44% 0); transform: translate(-1px, 0); }
+}
+@keyframes glitch-b {
+  0% { clip-path: inset(64% 0 8% 0); transform: translate(3px, 0); }
+  50% { clip-path: inset(8% 0 70% 0); transform: translate(-2px, 0); }
+  100% { clip-path: inset(44% 0 30% 0); transform: translate(1px, 0); }
+}
+
+/* Wrong key in the Access Terminal: one short jolt of interference (no flashing). */
+.is-interference .term-screen {
+  animation: interference 0.3s steps(3, end);
+}
+@keyframes interference {
+  0%, 100% { transform: none; box-shadow: none; }
+  33% { transform: translate(-2px, 0) skewX(-0.5deg); box-shadow: 2px 0 0 var(--red-soft), -2px 0 0 var(--green-soft); }
+  66% { transform: translate(2px, 0); box-shadow: -2px 0 0 var(--red-soft); }
+}

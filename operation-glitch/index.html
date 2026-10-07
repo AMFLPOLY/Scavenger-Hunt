@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="classified">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#08090a" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content="Secure field terminal. Authorized field personnel only." />
+    <meta property="og:title" content="FIELD OPERATIONS TERMINAL" />
+    <meta property="og:description" content="Secure channel. Authorized field personnel only." />
+    <title>Field Operations Terminal</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles/theme.css" />
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body>
+    <div id="app">
+      <noscript><p style="padding: 24px">This game needs JavaScript turned on.</p></noscript>
+    </div>
+
+    <!-- Remember script errors so a typo in a content file shows a helpful message instead of a blank page. -->
+    <script>
+      window.__OG_SCRIPT_ERRORS = [];
+      window.addEventListener('error', function (event) {
+        var file = event.filename ? event.filename.split(/[\\/]/).pop().split('?')[0] : '';
+        window.__OG_SCRIPT_ERRORS.push({ file: file, line: event.lineno, message: event.message });
+      });
+    </script>
+
+    <!-- Your content (edit these three) -->
+    <script src="content/game-config.js"></script>
+    <script src="content/missions.js"></script>
+    <script src="content/case-files.js"></script>
+
+    <!-- Game engine -->
+    <script src="js/core/dom.js"></script>
+    <script src="js/core/text.js"></script>
+    <script src="js/core/answer-validator.js"></script>
+    <script src="js/core/progress-storage.js"></script>
+    <script src="js/core/game-state.js"></script>
+    <script src="js/core/content.js"></script>
+    <script src="js/core/handler-voice.js"></script>
+    <script src="js/core/runner.js"></script>
+    <script src="js/core/remote.js"></script>
+    <script src="js/core/sound.js"></script>
+    <script src="js/ui/components.js"></script>
+    <script src="js/ui/boot-screen.js"></script>
+    <script src="js/ui/hub-screen.js"></script>
+    <script src="js/ui/comms-screen.js"></script>
+    <script src="js/ui/terminal-inputs.js"></script>
+    <script src="js/ui/terminal-screen.js"></script>
+    <script src="js/ui/training-games.js"></script>
+    <script src="js/ui/training-screen.js"></script>
+    <script src="js/ui/files-screen.js"></script>
+    <script src="js/ui/report-screens.js"></script>
+    <script src="js/ui/game-master-panel.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
